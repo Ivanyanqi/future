@@ -6,7 +6,16 @@ package cn.ivan.future.core;
  */
 public class FutureFactory {
 
+    /**
+     *  配置文件路径
+     */
+    private String configPath;
 
+    public FutureFactory(String configPath){
+        
+
+
+    }
 
 
 
