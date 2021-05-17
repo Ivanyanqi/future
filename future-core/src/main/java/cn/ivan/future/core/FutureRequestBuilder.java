@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author yanqi69
  * @date 2021/5/17
  */
-public class FuctureRequestBuilder {
+public class FutureRequestBuilder {
 
 
     public static FutureRequest build(String functionId, HttpServletRequest ... requests){

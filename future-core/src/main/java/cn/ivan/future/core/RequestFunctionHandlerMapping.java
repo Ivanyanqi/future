@@ -1,20 +1,23 @@
 package cn.ivan.future.core;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
  * @author yanqi69
  * @date 2021/5/14
  */
+@Slf4j
 public class RequestFunctionHandlerMapping implements HandlerMapping{
 
 
-    private Map<String,HandlerExecuteChain> handlerMap;
+    private Map<String,HandlerExecuteChain> handlerMap = new ConcurrentHashMap<>();
 
     private List<AbstractHttpHandler> httpHandlerList;
 
@@ -36,7 +39,12 @@ public class RequestFunctionHandlerMapping implements HandlerMapping{
 
         if(handler == null){
             //lookupForHandler
-            return this.lookupForHandler((HttpFutureRequest) request);
+            handler = this.lookupForHandler((HttpFutureRequest) request);
+            if(handler == null){
+                log.error("not found handler to handle this request functionId " + functionId);
+                throw new RuntimeException("not found handler to handle this request functionId " + functionId);
+            }
+            this.handlerMap.put(functionId,handler);
         }
         return handler;
     }

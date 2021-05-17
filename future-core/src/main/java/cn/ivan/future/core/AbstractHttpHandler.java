@@ -3,7 +3,6 @@ package cn.ivan.future.core;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -13,7 +12,9 @@ import java.io.IOException;
 @Slf4j
 public abstract class AbstractHttpHandler {
 
+
     public abstract boolean supports(HttpFutureRequest request);
+
 
 
     public void doService(FutureRequest request,FutureResponse response){
@@ -43,7 +44,7 @@ public abstract class AbstractHttpHandler {
 
 
     public void setResponse(Response execute,FutureResponse response) throws IOException {
-
+        response.setResponseString(execute.body().string());
     }
 
 
