@@ -8,7 +8,6 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +21,6 @@ public class FutureSpringInitializer implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 
     private String configPath;
-
 
 
     public FutureDispatcher initialize(){

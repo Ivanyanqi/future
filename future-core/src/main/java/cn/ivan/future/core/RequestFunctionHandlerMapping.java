@@ -1,11 +1,13 @@
 package cn.ivan.future.core;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -59,17 +61,22 @@ public class RequestFunctionHandlerMapping implements HandlerMapping{
         HandlerExecuteChain handlerExecuteChain = new HandlerExecuteChain(handler);
         ConfigProperties config = FutureDispatcher.Builder.getConfig(functionId);
         for (FutureInterceptor futureInterceptor : interceptorList) {
-            if(config.getInterceptors().contains(futureInterceptor.getClass().getName())){
-                handlerExecuteChain.addInterceptor(futureInterceptor);
-                continue;
-            }
             if(futureInterceptor.getClass().isAnnotationPresent(Interceptor.class)){
                 Interceptor annotation = futureInterceptor.getClass().getAnnotation(Interceptor.class);
-                String[] values = annotation.values();
+                String[] values = annotation.value();
                 if(Arrays.stream(values).collect(Collectors.toSet()).contains(functionId)){
                     handlerExecuteChain.addInterceptor(futureInterceptor);
+                    continue;
                 }
             }
+            Set<String> interceptors = config.getInterceptors();
+            if(CollectionUtils.isEmpty(interceptors)){
+                continue;
+            }
+            if(interceptors.contains(futureInterceptor.getClass().getName())){
+                handlerExecuteChain.addInterceptor(futureInterceptor);
+            }
+
         }
         return handlerExecuteChain;
     }

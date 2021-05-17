@@ -11,5 +11,5 @@ import java.lang.annotation.*;
 @Documented
 public @interface Interceptor{
 
-    String[] values() default {};
+    String[] value() default {};
 }
