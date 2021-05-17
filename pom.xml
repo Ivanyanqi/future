@@ -10,6 +10,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>future-core</module>
+<!--        <module>future-demo</module>-->
+        <module>future-spring</module>
     </modules>
 
     <properties>

@@ -2,6 +2,8 @@ package cn.ivan.future.core;
 
 import lombok.Data;
 
+import java.util.Set;
+
 /**
  * @author ivanqi
  * @date 2021/5/15
@@ -13,8 +15,10 @@ public class ConfigProperties {
 
     private String type;
 
-    private String handler;
+    private String function;
 
-    private String[] interceptors;
+    private String method;
+
+    private Set<String> interceptors;
 
 }

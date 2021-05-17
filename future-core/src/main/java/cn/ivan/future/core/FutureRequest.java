@@ -12,6 +12,7 @@ public class FutureRequest {
 
     private String functionId;
 
-
-
+    public FutureRequest(String functionId){
+        this.functionId = functionId;
+    }
 }
