@@ -18,7 +18,7 @@ public class GetHttpHandler extends AbstractHttpHandler {
 
     @Override
     public Request buildRequest(HttpFutureRequest request) {
-        return new Request.Builder().url(request.getFuntion()).build();
+        return new Request.Builder().url(request.getFunction()).build();
     }
 
 

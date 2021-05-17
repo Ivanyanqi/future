@@ -20,6 +20,6 @@ public class PostHttpHandler extends AbstractHttpHandler {
     @Override
     public Request buildRequest(HttpFutureRequest request) {
         RequestBody requestBody = RequestBody.create(MediaType.parse(request.getRequest().getContentType()),request.getRequestBody());
-        return new Request.Builder().url(request.getFuntion()).post(requestBody).build();
+        return new Request.Builder().url(request.getFunction()).post(requestBody).build();
     }
 }

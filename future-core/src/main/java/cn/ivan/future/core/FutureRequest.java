@@ -12,7 +12,7 @@ public class FutureRequest {
 
     private String functionId;
 
-    private String funtion;
+    private String function;
 
     private String method;
 
@@ -29,7 +29,7 @@ public class FutureRequest {
         if(config == null){
             throw new RuntimeException("not found request");
         }
-        this.funtion = config.getFunction();
+        this.function = config.getFunction();
         this.method = config.getMethod();
     }
 }
