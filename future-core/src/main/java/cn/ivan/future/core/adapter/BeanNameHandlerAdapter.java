@@ -1,10 +1,14 @@
-package cn.ivan.future.core;
+package cn.ivan.future.core.adapter;
+
+import cn.ivan.future.core.FutureRequest;
+import cn.ivan.future.core.FutureResponse;
+import cn.ivan.future.core.adapter.HandlerAdapter;
 
 /**
  * @author yanqi69
  * @date 2021/5/17
  */
-public abstract class BeanNameHandlerAdapter implements HandlerAdapter{
+public abstract class BeanNameHandlerAdapter implements HandlerAdapter {
 
 
     @Override

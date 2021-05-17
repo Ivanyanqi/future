@@ -1,5 +1,7 @@
-package cn.ivan.future.core;
+package cn.ivan.future.core.handler;
 
+import cn.ivan.future.core.HttpFutureRequest;
+import cn.ivan.future.core.handler.AbstractHttpHandler;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -8,7 +10,7 @@ import okhttp3.RequestBody;
  * @author yanqi69
  * @date 2021/5/17
  */
-public class PostFileHttpHandler extends AbstractHttpHandler{
+public class PostFileHttpHandler extends AbstractHttpHandler {
 
     @Override
     public boolean supports(HttpFutureRequest request) {

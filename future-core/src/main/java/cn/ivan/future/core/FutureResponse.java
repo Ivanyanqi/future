@@ -11,4 +11,8 @@ public class FutureResponse {
 
     private String responseString;
 
+    private byte[] bytes;
+
+    private String charset;
+
 }

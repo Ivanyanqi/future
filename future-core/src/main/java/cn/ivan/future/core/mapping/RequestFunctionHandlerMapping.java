@@ -1,5 +1,7 @@
-package cn.ivan.future.core;
+package cn.ivan.future.core.mapping;
 
+import cn.ivan.future.core.*;
+import cn.ivan.future.core.handler.AbstractHttpHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -12,14 +14,15 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
+ *  通过 functionId 和 request 参数获取 handlerChain
  * @author yanqi69
  * @date 2021/5/14
  */
 @Slf4j
-public class RequestFunctionHandlerMapping implements HandlerMapping{
+public class RequestFunctionHandlerMapping implements HandlerMapping {
 
 
-    private Map<String,HandlerExecuteChain> handlerMap = new ConcurrentHashMap<>();
+    private Map<String, HandlerExecuteChain> handlerMap = new ConcurrentHashMap<>();
 
     private List<AbstractHttpHandler> httpHandlerList;
 
