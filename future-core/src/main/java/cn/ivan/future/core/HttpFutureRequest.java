@@ -18,18 +18,6 @@ public class HttpFutureRequest extends FutureRequest{
 
     private HttpServletRequest request;
 
-    private String url;
-
-    private String method;
-
-    private String requestBody;
-
-    /**
-     * 二进制文件
-     */
-    private byte[] bytes;
-
-
     public HttpFutureRequest(String functionId,HttpServletRequest request){
         super(functionId);
         this.request = request;

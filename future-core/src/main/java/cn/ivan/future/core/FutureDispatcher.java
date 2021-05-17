@@ -169,12 +169,13 @@ public class FutureDispatcher {
             // 初始化默认 的 handlerMapping，handlerAdapter, HttpHandler
             //get请求
             List<AbstractHttpHandler> defaultHttpHandlers = new ArrayList<>();
-            defaultHttpHandlers.add(new GetHttpHandler());
-            defaultHttpHandlers.add(new PostHttpHandler());
-            defaultHttpHandlers.add(new PostFileHttpHandler());
             if (this.httpHandlerList != null && this.httpHandlerList.size() > 0) {
                 defaultHttpHandlers.addAll(this.httpHandlerList);
             }
+            // 后置处理
+            defaultHttpHandlers.add(new GetHttpHandler());
+            defaultHttpHandlers.add(new PostHttpHandler());
+            defaultHttpHandlers.add(new PostFileHttpHandler());
             RequestFunctionHandlerMapping handlerMapping = new RequestFunctionHandlerMapping(defaultHttpHandlers);
 
             handlerMapping.setInterceptorList(this.interceptorList);

@@ -18,6 +18,6 @@ public class PostFileHttpHandler extends AbstractHttpHandler{
     @Override
     public Request buildRequest(HttpFutureRequest request) {
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), request.getBytes());
-        return new Request.Builder().url(request.getUrl()).post(requestBody).build();
+        return new Request.Builder().url(request.getFuntion()).post(requestBody).build();
     }
 }
