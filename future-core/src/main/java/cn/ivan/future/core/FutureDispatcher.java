@@ -7,6 +7,7 @@ import cn.ivan.future.core.mapping.HandlerMapping;
 import cn.ivan.future.core.mapping.RequestFunctionHandlerMapping;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.*;
@@ -186,6 +187,10 @@ public class FutureDispatcher {
 
             handlerMapping.setInterceptorList(this.interceptorList);
             configPropertiesMap.forEach((functionId, config) -> {
+                String type = config.getType();
+                if("HTTP".equals(type)){
+                    return;
+                }
                 handlerMapping.initHandlerExecuteChain(functionId, config.getFunction());
             });
 

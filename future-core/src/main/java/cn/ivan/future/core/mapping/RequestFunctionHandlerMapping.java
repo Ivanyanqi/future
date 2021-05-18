@@ -81,6 +81,7 @@ public class RequestFunctionHandlerMapping implements HandlerMapping {
             }
 
         }
+        this.handlerMap.put(functionId,handlerExecuteChain);
         return handlerExecuteChain;
     }
 
