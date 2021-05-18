@@ -21,4 +21,6 @@ public class ConfigProperties {
 
     private Set<String> interceptors;
 
+    private String responseType;
+
 }

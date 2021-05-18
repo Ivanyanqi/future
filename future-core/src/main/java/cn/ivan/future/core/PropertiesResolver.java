@@ -28,6 +28,7 @@ public class PropertiesResolver {
         map.put("type", this::setType);
         map.put("function", this::setFunction);
         map.put("interceptors", this::setInterceptors);
+        map.put("responseType",this::setResponseType);
 
     }
 
@@ -60,6 +61,13 @@ public class PropertiesResolver {
             return;
         }
         configProperties.setInterceptors(Arrays.stream(value.split(",")).collect(Collectors.toSet()));
+    }
+
+    private void setResponseType(ConfigProperties configProperties, String value){
+        if(value == null){
+            return;
+        }
+        configProperties.setResponseType(value);
     }
 
 

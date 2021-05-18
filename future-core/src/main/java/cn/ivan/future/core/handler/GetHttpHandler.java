@@ -13,7 +13,7 @@ public class GetHttpHandler extends AbstractHttpHandler {
 
     @Override
     public boolean supports(HttpFutureRequest request) {
-        return "GET".equals(request.getMethod());
+        return "GET".equals(request.getMethod()) && !"file".equals(request.getResponseType());
     }
 
     @Override

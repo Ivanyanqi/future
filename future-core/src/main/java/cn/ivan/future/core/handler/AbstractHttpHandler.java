@@ -1,9 +1,6 @@
 package cn.ivan.future.core.handler;
 
-import cn.ivan.future.core.FutureRequest;
-import cn.ivan.future.core.FutureResponse;
-import cn.ivan.future.core.HttpFutureRequest;
-import cn.ivan.future.core.HttpFutureResponse;
+import cn.ivan.future.core.*;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
@@ -17,7 +14,6 @@ import java.io.IOException;
 @Slf4j
 public abstract class AbstractHttpHandler {
 
-
     public abstract boolean supports(HttpFutureRequest request);
 
 
@@ -26,7 +22,7 @@ public abstract class AbstractHttpHandler {
             return;
 
         }
-        OkHttpClient okHttpClient = new OkHttpClient();
+        OkHttpClient okHttpClient = OkHttpClientFactory.getInstance();
         Call call = okHttpClient.newCall(buildRequest((HttpFutureRequest) request));
         try {
             Response execute = call.execute();

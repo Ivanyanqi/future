@@ -18,6 +18,8 @@ public class FutureRequest {
 
     private String requestBody;
 
+    private String responseType;
+
     /**
      * 二进制文件
      */
@@ -31,5 +33,6 @@ public class FutureRequest {
         }
         this.function = config.getFunction();
         this.method = config.getMethod();
+        this.responseType = config.getResponseType();
     }
 }
