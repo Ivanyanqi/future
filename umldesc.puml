@@ -35,9 +35,9 @@ class HandlerExecuteChain{
     + void applyPostHandle(FutureRequest request,FutureResponse response)
 }
 
-HandlerExecuteChain o-- FutureInterceptor
-HandlerExecuteChain <.. FutureRequest
-HandlerExecuteChain <.. FutureResponse
+HandlerExecuteChain o--> FutureInterceptor
+HandlerExecuteChain ..> FutureRequest
+HandlerExecuteChain ..> FutureResponse
 
 
 class RequestFunctionHandlerMapping{
@@ -55,9 +55,9 @@ class FutureDispatcher{
     - handlerAdapter:List<HandlerAdapter>
     + void dispatcher(FutureRequest request,FutureResponse response)
 }
-FutureDispatcher o-- HandlerMapping
-FutureDispatcher o-- HandlerAdapter
-FutureDispatcher <.. HandlerExecuteChain
+FutureDispatcher o--> HandlerMapping
+FutureDispatcher o--> HandlerAdapter
+HandlerExecuteChain <.. FutureDispatcher
 
 abstract class AbstractHttpHandler{
     # abstract boolean supports(HttpFutureRequest request)
@@ -76,6 +76,7 @@ AbstractHttpHandler <|-- GetFileHttpHandler
 AbstractHttpHandler <|-- PostFileHttpHandler
 
 RequestFunctionHandlerMapping o-- AbstractHttpHandler
-HttpHandlerAdapter <.. AbstractHttpHandler
+AbstractHttpHandler <.. HttpHandlerAdapter
 
+HandlerExecuteChain o--> AbstractHttpHandler
 @enduml
