@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class FutureRequest
+class FutureResponse
+class HttpFutureRequest
+class HttpFutureResponse
+FutureRequest <|-- HttpFutureRequest
+FutureResponse <|-- HttpFutureResponse
+
+
+interface HandlerMapping {
+    + HandlerExecuteChain getHandler(FutureRequest request)
+}
+
+interface HandlerAdapter{
+    + boolean supports(Object handler)
+    + void handler(FutureRequest request,FutureResponse response,Object handler)
+}
+interface FutureInterceptor{
+    + boolean preHandler(FutureRequest request,FutureResponse response,Object handler)
+    + void postHandle(FutureRequest request,FutureResponse response,Object handler)
+}
+
+
+class HttpHandlerAdapter
+class BeanNameHandlerAdapter
+HandlerAdapter <|.. HttpHandlerAdapter
+HandlerAdapter <|.. BeanNameHandlerAdapter
+
+class HandlerExecuteChain{
+    - handler : Object
+    - interceptorList:List<FutureInterceptor>
+    + void applyPreHandle(FutureRequest request,FutureResponse response)
+    + void applyPostHandle(FutureRequest request,FutureResponse response)
+}
+
+HandlerExecuteChain o-- FutureInterceptor
+HandlerExecuteChain <.. FutureRequest
+HandlerExecuteChain <.. FutureResponse
+
+
+class RequestFunctionHandlerMapping{
+
+}
+
+HandlerMapping <|.. RequestFunctionHandlerMapping
+
+
+class FutureDispatcher{
+    - handlerMappings:List<HandlerMapping>
+    - handlerAdapter:List<HandlerAdapter>
+    + void dispatcher(FutureRequest request,FutureResponse response)
+}
+FutureDispatcher o-- HandlerMapping
+FutureDispatcher o-- HandlerAdapter
+FutureDispatcher <.. HandlerExecuteChain
+
+@enduml
