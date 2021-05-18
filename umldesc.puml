@@ -41,8 +41,11 @@ HandlerExecuteChain <.. FutureResponse
 
 
 class RequestFunctionHandlerMapping{
-
+   - httpHandlerList : List<AbstractHttpHandler>
+   - HandlerExecuteChain lookupForHandler(HttpFutureRequest request)
+   + initHandlerExecuteChain(String functionId,Object handler)
 }
+
 
 HandlerMapping <|.. RequestFunctionHandlerMapping
 
@@ -55,5 +58,24 @@ class FutureDispatcher{
 FutureDispatcher o-- HandlerMapping
 FutureDispatcher o-- HandlerAdapter
 FutureDispatcher <.. HandlerExecuteChain
+
+abstract class AbstractHttpHandler{
+    # abstract boolean supports(HttpFutureRequest request)
+    + void doService(FutureRequest request,FutureResponse response)
+    # abstract Request buildRequest(HttpFutureRequest request)
+    # void setResponse(Response execute, HttpFutureResponse futureResponse)
+}
+class GetHttpHandler
+class PostHttpHandler
+class GetFileHttpHandler
+class PostFileHttpHandler
+
+AbstractHttpHandler <|-- GetHttpHandler
+AbstractHttpHandler <|-- PostHttpHandler
+AbstractHttpHandler <|-- GetFileHttpHandler
+AbstractHttpHandler <|-- PostFileHttpHandler
+
+RequestFunctionHandlerMapping o-- AbstractHttpHandler
+HttpHandlerAdapter <.. AbstractHttpHandler
 
 @enduml
