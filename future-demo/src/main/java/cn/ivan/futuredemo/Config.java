@@ -1,5 +1,6 @@
 package cn.ivan.futuredemo;
 
+
 import cn.ivan.furure.spring.FutureSpringInitializer;
 import cn.ivan.future.core.FutureDispatcher;
 import org.springframework.context.annotation.Bean;

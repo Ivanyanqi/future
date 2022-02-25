@@ -1,6 +1,8 @@
 package cn.ivan.future.core;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
@@ -8,7 +10,8 @@ import java.util.Set;
  * @author ivanqi
  * @date 2021/5/15
  */
-@Data
+@Getter
+@Setter
 public class ConfigProperties {
 
     private String functionId;
